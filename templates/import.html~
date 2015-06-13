@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+  
+{% block content %}
+<br>
+<h1>Import new data from Flickr </h1>
+<div class="contact">
+	{% if template_values['is_admin'] %}
+		<p>Welcome {{template_values['nickname']}}!</p>
+		<p>Import new Flickr data by using the following link (this may take a few minutes):</p>
+	    	<a href="/import2">Import</a></span>
+		<p><a href="{{ template_values['logout_url'] }}">Log Out</a></p>
+  	{% endif %}
+  	{% if not template_values['is_admin'] %}
+		<p>You are not Authorised!</p>
+		<a href="{{ template_values['logout_url'] }}">Log Out</a></p>
+	{% endif %}
+  	{% if not template_values['user'] %}
+	  	<a href="{{ template_values['login_url'] }}">Sign In</a></p>
+  	{% endif %}
+
+</div>
+{% endblock %}

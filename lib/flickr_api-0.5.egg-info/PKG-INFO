@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: flickr-api
+Version: 0.5
+Summary: Python wrapper for the Flickr API
+Home-page: http://code.google.com/p/python-flickr-api/
+Author: Alexis Mignon
+Author-email: alexis.mignon@gmail.com
+License: BSD License
+Description: UNKNOWN
+Platform: UNKNOWN

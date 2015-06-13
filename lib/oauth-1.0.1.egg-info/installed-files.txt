@@ -1,0 +1,10 @@
+../oauth/__init__.py
+../oauth/oauth.py
+../oauth/__init__.pyc
+../oauth/oauth.pyc
+./
+PKG-INFO
+zip-safe
+top_level.txt
+dependency_links.txt
+SOURCES.txt
