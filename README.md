@@ -7,6 +7,10 @@ A basic gallery website written to be used on the Google App Engine.
  - Uses Google app engine and Google datastore as platform
  - Uses Google Accounts for authentication 
 
+#main.py
+The file main.py handles the main website. 
+
+Importing new data is done by accessing www.andreavandenberg.nl/import
 
 ## Run Locally
 1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
