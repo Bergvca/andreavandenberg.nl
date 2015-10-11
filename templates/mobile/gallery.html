@@ -1,15 +1,16 @@
-{% extends "index.html" %}
+{% extends "/mobile/index.html" %}
   
 {% block content %}
 <div class="navigation-container">
 	<div id="thumbs" class="navigation">
-		<a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+		<div>
 		{% for entry in pictures %}				
 		<ul class="thumbs noscript">
 			<li>
 				<a class="thumb" name="{{entry.name}}" href="{{ entry.imageURL }}" title="{{entry.name}}">
 					<img src="{{entry.thumbURL}}" alt="{{entry.name}}" />
 				</a>
+				
 				<div class="caption">
 					<div class="image-title">{{entry.name}}</div>
 					<div class="image-desc">{{entry.description}}</div>
@@ -20,7 +21,11 @@
 			</li>
 		</ul>
 		{% endfor %}
-		<a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+		</div>
+		<div class="pageLinkArrows">
+		<a class="pageLink prev" style="visibility: hidden; float: left;" href="#" title="Previous Page"></a>
+		<a class="pageLink next" style="visibility: hidden; float: right;" href="#" title="Next Page"></a>
+		</div>
 	</div>
 </div>
 <div class="content">

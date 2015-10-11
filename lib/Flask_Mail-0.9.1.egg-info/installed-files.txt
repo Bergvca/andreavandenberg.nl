@@ -1,9 +1,0 @@
-../flask_mail.py
-../flask_mail.pyc
-./
-PKG-INFO
-not-zip-safe
-requires.txt
-top_level.txt
-dependency_links.txt
-SOURCES.txt

@@ -1,0 +1,258 @@
+div#container {
+	overflow: hidden;
+}
+div.content {
+	display: none;
+	clear: both;
+}
+div.contact {
+	padding: 5px 10px;
+}
+a:visited {
+	border-style: none;
+}
+div.content a, div.navigation a {
+	text-decoration: none;
+}
+div.content a:hover, div.content a:active {
+	text-decoration: underline;
+}
+
+div.navigation a.pageLink {
+	height: 77px;
+	line-height: 77px;
+}
+
+div.controls {
+	margin-top: 5px;
+	}
+div.controls a {
+	padding: 5px;
+}
+
+div.controls a:link,
+div.controls a:visited{
+	width: 150px;
+	height: 30px;
+	line-height: 11px;
+	display: block;
+	color: #484848;
+	text-decoration: none;
+	font-size: 10pt;
+	font-variant: small-caps;
+	text-transform:lowercase;
+	letter-spacing: .1em;
+	border-bottom: none;
+	float:left;
+	margin: 0;
+	padding: 0;
+}
+
+div.controls a:hover,
+div.controls a:focus{
+	color: #206bb9;
+	
+}
+
+
+div.ss-controls {
+	float: left;
+}
+div.nav-controls {
+	float: right;
+}
+
+
+
+div.slideshow-container {
+	position: relative;
+	clear: both;
+	float: left;
+}
+
+div.loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('images/loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+div.slideshow span.image-wrapper {
+	display: block;
+
+}
+
+div.slideshow a.advance-link {
+	display: block;
+	text-align: center;
+}
+
+div.slideshow a.advance-link:hover,
+div.slideshow a.advance-link:active,
+div.slideshow a.advance-link:visited {
+	text-decoration: none;
+}
+div.slideshow a.advance-link:focus {
+	outline: none;
+}
+
+div.slideshow img {
+	border-style: solid;
+	border-width: 1px;
+	max-width: 100%;
+}
+div.caption-container {
+	clear:both;
+	float: left;
+	position: relative;
+	margin-top: 30px;
+}
+span.image-caption {
+	display: block;
+	top: 0;
+	left: 0;
+}
+
+div.caption-container, span.image-caption {
+	width: 334px;
+}
+
+div.caption {
+	clear: both;
+	float: left;
+	padding: 0 12px;
+}
+
+div.image-title {
+	font-weight: bold;
+	font-size: 1.4em;
+}
+div.image-desc {
+	line-height: 1.3em;
+	padding-top: 12px;
+}
+div.download {
+	margin-top: 8px;
+}
+div.photo-index {
+ 	font-size: 75%;
+	padding: 5px 12px;
+}
+div.navigation-container {
+	position: relative;
+	left: 0%;
+	padding: 10px;
+
+}
+div.navigation {
+	position: relative;
+	left: 0%;
+}
+div.navigation a.pageLink {
+	display: block;
+	position: relative;
+	margin: 2px;
+	width: 16px;
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+div.navigation a.pageLink:focus {
+	outline: none;
+}
+
+div.pageLinkArrows {
+	display: block;
+	position: relative;
+	clear: both;
+}
+
+ul.thumbs {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+ul.thumbs li {
+	float: left;
+	padding: 0;
+	margin: 2px;
+	list-style: none;
+}
+a.thumb {
+	padding: 1px;
+	display: block;
+}
+a.thumb:focus {
+	outline: none;
+}
+ul.thumbs img {
+	border: none;
+	display: block;
+}
+div.pagination {
+	clear: both;
+	position: relative;
+	left: -50%;
+}
+div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
+	position: relative;
+	display: block;
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #ccc;
+}
+div.pagination a:hover {
+	text-decoration: none;
+}
+div.pagination span.current {
+	font-weight: bold;
+}
+div.pagination span.ellipsis {
+	border: none;
+	padding: 5px 0 3px 2px;
+}
+
+div.gallery-gutter {
+	clear: both;
+	padding-bottom: 20px;
+}
+
+ul#hire_navigation{
+	
+	margin: 0 auto;
+	padding: 0 100px;
+	border-bottom: 1px #888 dotted;
+	border-top: 1px #888 dotted;
+	list-style-type: none;
+	text-align:center;
+}
+
+#hire_navigation li{
+	text-align: center;
+}
+
+#hire_navigation a:link,
+#hire_navigation a:visited{
+	width: 100px;
+	height: 27px;
+	line-height: 30px;
+	display: block;
+	color: #484848;
+	text-decoration: none;
+	font-size: 11pt;
+	font-variant: small-caps;
+	text-transform:lowercase;
+	letter-spacing: .1em;
+	border-bottom: none;
+	clear:both;
+	margin: 0;
+	padding:0;
+}
+
+#hire_navigation a:hover,
+#hire_navigation a:focus{
+	color: #206bb9;
+	border-bottom: 2px solid #206bb9;
+}

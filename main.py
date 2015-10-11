@@ -8,8 +8,11 @@ from google.appengine.api import users, urlfetch, mail
 from forms import ContactForm
 from Queue import Queue
 from threading import Thread
+from flask.ext.mobility import Mobility
+from flask.ext.mobility.decorators import mobile_template
 
 app = Flask(__name__)
+Mobility(app) #Checks for mobile
 app.config['DEBUG'] = True
 app.secret_key = APP_SECRET_KEY
 flickr_api.set_keys(api_key = FLICKR_API_KEY, api_secret = FLICKR_API_SECRET)
@@ -25,6 +28,7 @@ class Photo(db.Model):
 	imageURL  = db.StringProperty()
 	thumbURL  = db.StringProperty()
 	orgImageURL = db.StringProperty()
+	dateUploaded = db.StringProperty()
 
 def clearStore():
 	db.delete(Photo.all())
@@ -44,6 +48,7 @@ def getPhoto(p, setId, setName):
 	photoSizes = p.getSizes()
 	desc = photoInfo['description'] 
 	title = photoInfo['title']
+	dateUploaded = photoInfo['dateuploaded']
 	id = p.id
 	imageURL = photoSizes['Medium']['source']
 	thumbURL = photoSizes['Square']['source']
@@ -64,8 +69,19 @@ def getPhoto(p, setId, setName):
 			imageThumb=imageThumb, 
 			imageURL=imageURL,
 			thumbURL=thumbURL,
-			orgImageURL=orgImageURL)		
+			orgImageURL=orgImageURL,
+			dateUploaded=dateUploaded)		
 	foto.put()
+
+def renderTemplate(pageName, template):
+	q = Photo.all()
+	q.filter("photoSetName =", pageName)
+	q.order('-dateUploaded')
+	return render_template(template, pictures=q)
+
+#################################################################
+# App route codes
+#################################################################
 
 @app.route('/import')
 def importPage1():
@@ -109,39 +125,38 @@ def importPage2():
 	return render_template('imported.html',message=message)
 
 @app.route('/')
-def showImages():
+@mobile_template('{mobile/}gallery.html')
+def showImages(template):
 	pageName = 'Schilderijen'
-	q = Photo.all()
-	q.filter("photoSetName =", pageName)
-	return render_template('gallery.html',pictures=q)
+	return renderTemplate(pageName, template)
+
 
 @app.route('/drawings')
-def showDrawings():
+@mobile_template('{mobile/}gallery.html')
+def showDrawings(template):
 	pageName = 'Tekeningen'
-	q = Photo.all()
-	q.filter("photoSetName =", pageName)
-	return render_template('gallery.html',pictures=q)
+	return renderTemplate(pageName, template)
 
 @app.route('/otherprojects')
-def showOther():
+@mobile_template('{mobile/}gallery.html')
+def showOther(template):
 	pageName = 'Andere Projecten'
-	q = Photo.all()
-	q.filter("photoSetName =", pageName)
-	return render_template('gallery.html',pictures=q)
-
-@app.route('/about')
-def about():
-	return render_template('about.html')
+	return renderTemplate(pageName, template)
 
 @app.route('/jewellery')
-def sieraden():
+@mobile_template('{mobile/}gallery.html')
+def sieraden(template):
 	pageName = 'Sieraden'
-	q = Photo.all()
-	q.filter("photoSetName =", pageName)
-	return render_template('gallery.html',pictures=q)
+	return renderTemplate(pageName, template)
+
+@app.route('/about')
+@mobile_template('{mobile/}about.html')
+def about(template):
+	return render_template(template)
 
 @app.route('/contact', methods=['GET', 'POST'])
-def contact():
+@mobile_template('{mobile/}contact.html')
+def contact(template):
 	form = ContactForm()
 	if request.method == 'POST':
 		if form.validate() == False:
@@ -154,8 +169,14 @@ def contact():
 				      body=form.message.data + ' ' + form.name.data + ' , Send by: ' + form.email.data)			
 			return render_template('contact.html', success=True)
 	elif request.method == 'GET':
-		return render_template('contact.html', form=form)
+		return render_template(template, form=form)
 	
+
+##############################################################################################################
+#	The following code is only used if the images are stored in the datastore (HOST_IMAGES_SELF=True)
+#	This is usefull if flickr is down
+##############################################################################################################
+
 @app.route("/imgs/<path:path>")
 def images(path):
 	result = db.GqlQuery("SELECT * FROM Photo WHERE uid = :1 LIMIT 1", path).fetch(1)
