@@ -16,6 +16,10 @@ a{
 a:focus, a:hover, a:active {
 	text-decoration: underline;
 }
+a#current {
+  color: #206bb9 !important;
+  text-decoration: underline;
+}
 p, li {
 	line-height: 1.8em;
 }
