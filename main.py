@@ -77,7 +77,7 @@ def renderTemplate(pageName, template):
 	q = Photo.all()
 	q.filter("photoSetName =", pageName)
 	q.order('-dateUploaded')
-	return render_template(template, pictures=q)
+	return render_template(template, pictures=q, pageName=pageName)
 
 #################################################################
 # App route codes
@@ -127,32 +127,32 @@ def importPage2():
 @app.route('/')
 @mobile_template('{mobile/}gallery.html')
 def showImages(template):
-	pageName = 'Schilderijen'
+	pageName = 'Eigen Werk'
 	return renderTemplate(pageName, template)
 
+
+@app.route('/commissioned')
+@mobile_template('{mobile/}gallery.html')
+def showDrawings(template):
+	pageName = 'Opdrachten'
+	return renderTemplate(pageName, template)
 
 @app.route('/drawings')
 @mobile_template('{mobile/}gallery.html')
-def showDrawings(template):
+def showOther(template):
 	pageName = 'Tekeningen'
 	return renderTemplate(pageName, template)
 
-@app.route('/otherprojects')
-@mobile_template('{mobile/}gallery.html')
-def showOther(template):
-	pageName = 'Andere Projecten'
-	return renderTemplate(pageName, template)
-
-@app.route('/jewellery')
+@app.route('/otherwork')
 @mobile_template('{mobile/}gallery.html')
 def sieraden(template):
-	pageName = 'Sieraden'
+	pageName = 'Andere Projecten'
 	return renderTemplate(pageName, template)
 
 @app.route('/about')
 @mobile_template('{mobile/}about.html')
 def about(template):
-	return render_template(template)
+	return render_template(template, pageName='about')
 
 @app.route('/contact', methods=['GET', 'POST'])
 @mobile_template('{mobile/}contact.html')
@@ -161,15 +161,15 @@ def contact(template):
 	if request.method == 'POST':
 		if form.validate() == False:
 			flash('All fields are required.')
-			return render_template('contact.html', form=form)
+			return render_template('contact.html', form=form, pageName='contact')
 		else:
 			mail.send_mail(sender=CONTACT_SENDER_MAIL,
 				      to=adminAccounts(),
 				      subject=form.subject.data,
 				      body=form.message.data + ' ' + form.name.data + ' , Send by: ' + form.email.data)			
-			return render_template('contact.html', success=True)
+			return render_template('contact.html', success=True, pageName='contact')
 	elif request.method == 'GET':
-		return render_template(template, form=form)
+		return render_template(template, form=form, pageName='contact')
 	
 
 ##############################################################################################################
